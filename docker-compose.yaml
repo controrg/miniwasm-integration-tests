@@ -1,0 +1,12 @@
+services:
+  miniwasm:
+    build: .
+    ports:
+      - 1317:1317
+      - 9090:9090
+      - 26657:26657
+      - 26656:26656
+    volumes:
+      - miniwasm:/root
+volumes:
+  miniwasm:

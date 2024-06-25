@@ -1,0 +1,21 @@
+name: CI Tests
+on:
+  push:
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "yarn"
+      - name: prepare
+        run: yarn
+      - name: start local block chain
+        run: docker-compose up -d
+      - name: test
+        run: yarn test
+      - name: stop local block chain
+        run: docker-compose down
