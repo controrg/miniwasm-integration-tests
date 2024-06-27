@@ -19,7 +19,9 @@ export const liveBalance =
     // Subscribe to changes
     wsClient.subscribe(
       "Tx",
-      {},
+      {
+        "transfer.recipient": address,
+      },
       async () => (balance = await getBalance(lcdClient, address))
     );
     wsClient.start();
